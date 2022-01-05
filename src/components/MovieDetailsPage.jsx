@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams, Outlet } from 'react-router-dom';
+import { NavLink, useParams, Outlet, useNavigate } from 'react-router-dom';
 import * as GetApi from './Service';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
+  const navi = useNavigate();
 
   function fetchMovieCard() {
     setIsLoading(true);
@@ -20,6 +21,10 @@ export default function MovieDetailsPage() {
 
   return movie ? (
     <div>
+      <div>
+        <button onClick={() => navi(-1)}>Back</button>
+      </div>
+
       <img
         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
         alt=""
