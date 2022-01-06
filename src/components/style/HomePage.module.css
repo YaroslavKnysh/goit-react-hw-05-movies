@@ -1,0 +1,32 @@
+.container {
+  max-width: 1200px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.home_movieImg {
+  width: 100%;
+}
+/* .home_movieItem {
+  width: 250px;
+} */
+.home_movieLink {
+  width: 100%;
+}
+
+.home_movieList {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  margin-left: -5px;
+  margin-top: -5px;
+  padding: 0;
+}
+
+.home_movieItem {
+  margin-left: 5px;
+  margin-top: 5px;
+
+  flex-basis: calc((100% - 30px) / 3);
+}
