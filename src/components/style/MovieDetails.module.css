@@ -1,0 +1,12 @@
+.movieDetails_linkContainer {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.movieDetails_link_cast {
+  margin-right: 10px;
+}
+
+.movieDetails_link_reviews,
+.movieDetails_link_cast {
+  font-weight: bold;
+}

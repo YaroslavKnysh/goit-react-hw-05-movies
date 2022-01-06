@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useParams, Outlet, useNavigate } from 'react-router-dom';
 import * as GetApi from './Service';
+import s from './style/MovieDetails.module.css';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
@@ -33,9 +34,19 @@ export default function MovieDetailsPage() {
       <p>Overview: {movie.overview}</p>
       <p>Genres: {movie.genres.map(genre => genre.name).join(', ')}</p>
       <a href={`${movie.homepage}`}>Movie Homepage</a>
-      <div>
-        <NavLink to={`/movies/${movie.id}/cast`}>Cast</NavLink>
-        <NavLink to={`/movies/${movie.id}/reviews`}>Reviews</NavLink>
+      <div className={s.movieDetails_linkContainer}>
+        <NavLink
+          className={s.movieDetails_link_cast}
+          to={`/movies/${movie.id}/cast`}
+        >
+          Cast
+        </NavLink>
+        <NavLink
+          className={s.movieDetails_link_reviews}
+          to={`/movies/${movie.id}/reviews`}
+        >
+          Reviews
+        </NavLink>
       </div>
       <Outlet />
     </div>
