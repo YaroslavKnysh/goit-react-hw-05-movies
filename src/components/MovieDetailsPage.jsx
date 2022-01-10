@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams, Outlet, useNavigate } from 'react-router-dom';
+import {
+  NavLink,
+  useParams,
+  Outlet,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import * as GetApi from './Service';
 import s from './style/MovieDetails.module.css';
 
@@ -8,6 +14,8 @@ export default function MovieDetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const navi = useNavigate();
+  const location = useLocation();
+  const fromPage = location.state?.from?.pathname ?? '/';
 
   function fetchMovieCard() {
     setIsLoading(true);
@@ -23,7 +31,7 @@ export default function MovieDetailsPage() {
   return movie ? (
     <div>
       <div>
-        <button onClick={() => navi(-1)}>Back</button>
+        <button onClick={() => navi(fromPage)}>Back</button>
       </div>
 
       <img
@@ -38,12 +46,14 @@ export default function MovieDetailsPage() {
         <NavLink
           className={s.movieDetails_link_cast}
           to={`/movies/${movie.id}/cast`}
+          state={{ from: location.state.from }}
         >
           Cast
         </NavLink>
         <NavLink
           className={s.movieDetails_link_reviews}
           to={`/movies/${movie.id}/reviews`}
+          state={{ from: location.state.from }}
         >
           Reviews
         </NavLink>

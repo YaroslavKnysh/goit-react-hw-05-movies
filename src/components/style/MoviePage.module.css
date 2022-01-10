@@ -28,3 +28,7 @@
 
   flex-basis: calc((100% - 30px) / 3);
 }
+
+.form {
+  margin-bottom: 15px;
+}
