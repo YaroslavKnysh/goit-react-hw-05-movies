@@ -8,8 +8,9 @@ export default function MoviesPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
 
-  function fetchMoviesSearch() {
+  function fetchMoviesSearch(searchQuery) {
     setIsLoading(true);
 
     GetApi.GetApiSearch(searchQuery)
@@ -19,7 +20,8 @@ export default function MoviesPage() {
   function onSubmitForm(e) {
     e.preventDefault();
     setMovies([]);
-    fetchMoviesSearch();
+    fetchMoviesSearch(searchQuery);
+    navigate({ ...location, search: `query=${searchQuery}` });
   }
   function onSearchInput(e) {
     setSearchQuery(e.target.value);

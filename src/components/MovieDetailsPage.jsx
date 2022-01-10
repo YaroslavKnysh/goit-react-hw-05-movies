@@ -15,8 +15,14 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const navi = useNavigate();
   const location = useLocation();
-  const fromPage = location.state?.from?.pathname ?? '/';
 
+  function goBackButtonHandler() {
+    const { pathname, search } = location?.state?.from;
+
+    const fromPage = pathname === '/movies' ? `${pathname}${search}` : pathname;
+
+    navi(fromPage);
+  }
   function fetchMovieCard() {
     setIsLoading(true);
 
@@ -31,7 +37,7 @@ export default function MovieDetailsPage() {
   return movie ? (
     <div>
       <div>
-        <button onClick={() => navi(fromPage)}>Back</button>
+        <button onClick={goBackButtonHandler}>Back</button>
       </div>
 
       <img
